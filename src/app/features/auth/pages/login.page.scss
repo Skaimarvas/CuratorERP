@@ -1,0 +1,96 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+}
+
+.login-page {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: 1.25rem;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(16, 33, 47, 0.18), transparent 35%),
+    radial-gradient(circle at 85% 10%, rgba(159, 111, 22, 0.22), transparent 32%),
+    linear-gradient(160deg, #f7f2e8 0%, #efe6d8 100%);
+}
+
+.login-card {
+  width: min(100%, 440px);
+  padding: 2rem;
+  border-radius: 24px;
+  border: 1px solid rgba(16, 33, 47, 0.12);
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 22px 60px rgba(16, 33, 47, 0.14);
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  color: #9f6f16;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 2.2vw, 2.3rem);
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  margin: 0.75rem 0 1.5rem;
+  color: rgba(20, 33, 45, 0.7);
+}
+
+form {
+  display: grid;
+  gap: 0.55rem;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+input[type='email'],
+input[type='password'] {
+  height: 2.8rem;
+  border: 1px solid rgba(16, 33, 47, 0.22);
+  border-radius: 12px;
+  padding: 0 0.8rem;
+  background: rgba(255, 255, 255, 0.96);
+}
+
+input:focus-visible {
+  outline: 2px solid #9f6f16;
+  outline-offset: 1px;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+
+button {
+  height: 2.9rem;
+  border: 0;
+  border-radius: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(100deg, #0f2535 0%, #26445c 100%);
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #a52222;
+  margin-bottom: 0.35rem;
+}

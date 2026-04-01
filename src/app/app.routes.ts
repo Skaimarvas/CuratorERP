@@ -1,11 +1,24 @@
 import { Routes } from '@angular/router';
+import { LoginPage } from './features/auth/pages/login.page';
 import { DashboardPage } from './features/dashboard/dashboard.page';
+import { AppShellComponent } from './layouts/app-shell/app-shell.component';
 
 export const routes: Routes = [
 	{
+		path: 'login',
+		component: LoginPage,
+		title: 'Curator ERP | Login',
+	},
+	{
 		path: '',
-		component: DashboardPage,
-		title: 'Curator ERP | Dashboard',
+		component: AppShellComponent,
+		children: [
+			{
+				path: '',
+				component: DashboardPage,
+				title: 'Curator ERP | Dashboard',
+			},
+		],
 	},
 	{
 		path: '**',

@@ -1,21 +1,11 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterLink, RouterLinkActive, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App {
-  protected readonly applicationName = 'Curator ERP';
-  protected readonly navigation = [
-    { label: 'Dashboard', path: '/' },
-    { label: 'Sales', path: '/' },
-    { label: 'Inventory', path: '/' },
-    { label: 'Purchasing', path: '/' },
-    { label: 'Finance', path: '/' },
-    { label: 'People', path: '/' },
-  ];
-  protected readonly currentYear = new Date().getFullYear();
-}
+export class App {}

@@ -1,0 +1,21 @@
+<div class="app-shell">
+  <app-sidebar
+    [applicationName]="applicationName"
+    [navigation]="navigation"
+    [currentYear]="currentYear"
+  />
+
+  <section class="workspace">
+    <header class="workspace-header">
+      <div>
+        <p class="eyebrow">Workspace</p>
+        <h2>ERP Control Center</h2>
+      </div>
+      <button type="button">Create Module</button>
+    </header>
+
+    <main class="workspace-content">
+      <router-outlet />
+    </main>
+  </section>
+</div>

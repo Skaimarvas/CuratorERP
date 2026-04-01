@@ -1,0 +1,26 @@
+<aside class="sidebar">
+  <div>
+    <p class="eyebrow">Operations Suite</p>
+    <h1>{{ applicationName() }}</h1>
+    <p class="sidebar-copy">
+      Base workspace for finance, inventory, purchasing, and sales modules.
+    </p>
+  </div>
+
+  <nav class="navigation" aria-label="Primary">
+    @for (item of navigation(); track item.label) {
+      <a
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+      >
+        {{ item.label }}
+      </a>
+    }
+  </nav>
+
+  <div class="sidebar-footer">
+    <span>Angular 21 starter</span>
+    <span>{{ currentYear() }}</span>
+  </div>
+</aside>
