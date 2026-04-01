@@ -1,0 +1,132 @@
+:host {
+	display: block;
+	min-height: 100dvh;
+}
+
+.app-shell {
+	display: grid;
+	grid-template-columns: 280px 1fr;
+	min-height: 100dvh;
+}
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 2rem;
+	padding: 2rem;
+	color: #f3efe6;
+	background:
+		radial-gradient(circle at top, rgba(221, 164, 72, 0.22), transparent 38%),
+		linear-gradient(180deg, #10212f 0%, #0b1620 100%);
+	border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar h1,
+.workspace-header h2 {
+	margin: 0;
+	font-weight: 700;
+	letter-spacing: -0.03em;
+}
+
+.sidebar h1 {
+	font-size: clamp(2rem, 2vw, 2.6rem);
+}
+
+.sidebar-copy {
+	margin: 0.75rem 0 0;
+	max-width: 20rem;
+	color: rgba(243, 239, 230, 0.74);
+	line-height: 1.6;
+}
+
+.eyebrow {
+	margin: 0 0 0.5rem;
+	text-transform: uppercase;
+	letter-spacing: 0.16em;
+	font-size: 0.72rem;
+	color: #d9b15e;
+}
+
+.navigation {
+	display: grid;
+	gap: 0.75rem;
+}
+
+.navigation a {
+	display: block;
+	padding: 0.95rem 1rem;
+	color: rgba(243, 239, 230, 0.85);
+	text-decoration: none;
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 18px;
+	background: rgba(255, 255, 255, 0.03);
+	transition:
+		transform 180ms ease,
+		background 180ms ease,
+		border-color 180ms ease;
+}
+
+.navigation a:hover,
+.navigation a.active {
+	transform: translateX(4px);
+	background: rgba(217, 177, 94, 0.14);
+	border-color: rgba(217, 177, 94, 0.35);
+}
+
+.sidebar-footer {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	font-size: 0.85rem;
+	color: rgba(243, 239, 230, 0.52);
+}
+
+.workspace {
+	padding: 2rem;
+}
+
+.workspace-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: 1.5rem;
+}
+
+.workspace-header button {
+	border: 0;
+	border-radius: 999px;
+	padding: 0.9rem 1.2rem;
+	background: #10212f;
+	color: #f8f7f2;
+	font: inherit;
+	cursor: pointer;
+	box-shadow: 0 18px 50px rgba(16, 33, 47, 0.2);
+}
+
+.workspace-content {
+	min-height: calc(100dvh - 7rem);
+}
+
+@media (max-width: 960px) {
+	.app-shell {
+		grid-template-columns: 1fr;
+	}
+
+	.workspace {
+		padding-top: 1rem;
+	}
+}
+
+@media (max-width: 640px) {
+	.sidebar,
+	.workspace {
+		padding: 1.25rem;
+	}
+
+	.workspace-header {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+}

@@ -1,0 +1,40 @@
+<section class="dashboard-grid">
+  <article class="hero-card">
+    <p class="eyebrow">Starter Module</p>
+    <h3>Operations dashboard scaffold</h3>
+    <p>
+      The workspace is ready for feature modules, API integration, authentication, and role-based
+      access control.
+    </p>
+  </article>
+
+  <section class="metrics" aria-label="Key metrics">
+    @for (metric of metrics; track metric.label) {
+      <article class="metric-card">
+        <span>{{ metric.label }}</span>
+        <strong>{{ metric.value }}</strong>
+        <small>{{ metric.trend }}</small>
+      </article>
+    }
+  </section>
+
+  <article class="panel-card">
+    <p class="eyebrow">Planned Modules</p>
+    <h3>Suggested ERP feature groups</h3>
+    <ul>
+      @for (module of modules; track module) {
+        <li>{{ module }}</li>
+      }
+    </ul>
+  </article>
+
+  <article class="panel-card">
+    <p class="eyebrow">Recent Activity</p>
+    <h3>Sample business events</h3>
+    <ul>
+      @for (item of activity; track item) {
+        <li>{{ item }}</li>
+      }
+    </ul>
+  </article>
+</section>
