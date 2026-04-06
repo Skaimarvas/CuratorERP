@@ -1,6 +1,9 @@
+@use '../../../styles/variables' as *;
+
 :host {
   display: block;
   min-height: 100dvh;
+  background: $surface;
 }
 
 .app-shell {
@@ -10,57 +13,65 @@
 }
 
 .workspace {
-  padding: 2rem;
+  padding: $spacing-3xl;
+  background: $surface;
 }
 
 .workspace-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
 }
 
 .workspace-header h2 {
   margin: 0;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-weight: $weight-bold;
+  letter-spacing: $letter-spacing-normal;
+  color: $on-surface;
 }
 
 .workspace-header .eyebrow {
   margin: 0 0 0.5rem;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.72rem;
-  color: #9f6f16;
+  letter-spacing: $letter-spacing-wide;
+  font-size: $text-xs;
+  color: $on-surface-variant;
+  font-weight: $weight-semibold;
 }
 
 .workspace-header button {
   border: 0;
-  border-radius: 999px;
-  padding: 0.9rem 1.2rem;
-  background: #10212f;
-  color: #f8f7f2;
+  border-radius: $radius-sm;
+  padding: 0.75rem 1.5rem;
+  background: $primary;
+  color: $on-primary;
   font: inherit;
   cursor: pointer;
-  box-shadow: 0 18px 50px rgba(16, 33, 47, 0.2);
+  font-weight: $weight-medium;
+  transition: background $transition-normal;
+}
+
+.workspace-header button:hover {
+  background: $primary-dim;
 }
 
 .workspace-content {
   min-height: calc(100dvh - 7rem);
 }
 
-@media (max-width: 960px) {
+@media (max-width: $breakpoint-md) {
   .app-shell {
     grid-template-columns: 1fr;
   }
 
   .workspace {
-    padding-top: 1rem;
+    padding-top: $spacing-md;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: $breakpoint-sm) {
   .workspace {
     padding: 1.25rem;
   }

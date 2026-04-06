@@ -1,3 +1,5 @@
+@use '../../../styles/variables' as *;
+
 .dashboard-grid {
   display: grid;
   gap: 1.25rem;
@@ -6,11 +8,9 @@
 .hero-card,
 .panel-card,
 .metric-card {
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(16, 33, 47, 0.08);
-  box-shadow: 0 20px 50px rgba(16, 33, 47, 0.08);
-  backdrop-filter: blur(12px);
+  border-radius: $radius-sm;
+  background: $surface-container-lowest;
+  box-shadow: $shadow-ambient;
 }
 
 .hero-card,
@@ -21,13 +21,15 @@
 .hero-card h3,
 .panel-card h3 {
   margin: 0;
-  font-size: 1.5rem;
-  letter-spacing: -0.03em;
+  font-size: $text-2xl;
+  letter-spacing: $letter-spacing-normal;
+  color: $on-surface;
 }
 
 .hero-card p:last-child,
 .panel-card ul {
-  margin: 1rem 0 0;
+  margin: $spacing-md 0 0;
+  color: $on-surface;
 }
 
 .metrics {
@@ -42,24 +44,26 @@
 
 .metric-card span,
 .metric-card small,
-.panel-card li,
-.hero-card p:last-child {
-  color: rgba(20, 33, 45, 0.7);
+.panel-card li {
+  color: $on-surface-variant;
 }
 
 .metric-card strong {
   display: block;
   margin: 0.4rem 0;
-  font-size: 2rem;
-  letter-spacing: -0.04em;
+  font-size: $text-4xl;
+  letter-spacing: $letter-spacing-tight;
+  color: $on-surface;
+  font-weight: $weight-semibold;
 }
 
 .eyebrow {
   margin: 0 0 0.5rem;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 0.72rem;
-  color: #9f6f16;
+  letter-spacing: $letter-spacing-wide;
+  font-size: $text-xs;
+  color: $on-surface-variant;
+  font-weight: $weight-semibold;
 }
 
 .panel-card ul {
@@ -70,7 +74,7 @@
   margin-top: 0.75rem;
 }
 
-@media (max-width: 960px) {
+@media (max-width: $breakpoint-md) {
   .metrics {
     grid-template-columns: 1fr;
   }
