@@ -1,0 +1,130 @@
+<div class="inventory-page">
+  <section class="header-section">
+    <div>
+      <span class="section-label">Logistics & Supply</span>
+      <h1 class="section-title">Inventory Assets</h1>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-secondary" type="button">
+        <span class="material-symbols-outlined">filter_list</span>
+        Filter View
+      </button>
+      <button class="btn btn-primary" type="button">
+        <span class="material-symbols-outlined">add_circle</span>
+        Add Product
+      </button>
+    </div>
+  </section>
+
+  <section class="workspace-grid">
+    <article class="table-card">
+      <div class="table-head">
+        <h2>Inventory Overview</h2>
+        <span class="warehouse-pill">All Warehouses</span>
+      </div>
+
+      <div class="table-wrap">
+        <table class="inventory-table">
+          <thead>
+            <tr>
+              <th>Product Name & SKU</th>
+              <th>Category</th>
+              <th>Stock Level</th>
+              <th>Warehouse</th>
+              <th class="align-right">Price</th>
+              <th class="align-right">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of inventoryRows; track row.sku) {
+              <tr>
+                <td>
+                  <div class="product-cell">
+                    <span class="product-name">{{ row.productName }}</span>
+                    <span class="product-sku">{{ row.sku }}</span>
+                  </div>
+                </td>
+                <td class="muted">{{ row.category }}</td>
+                <td>
+                  <div class="stock-state">
+                    <span class="stock-dot" [class.in-stock]="row.stockState === 'In Stock'" [class.low-stock]="row.stockState === 'Low Stock'" [class.out-of-stock]="row.stockState === 'Out of Stock'"></span>
+                    <span class="stock-pill" [class.in-stock]="row.stockState === 'In Stock'" [class.low-stock]="row.stockState === 'Low Stock'" [class.out-of-stock]="row.stockState === 'Out of Stock'">{{ row.stockState }}</span>
+                    <span class="units">({{ row.units }} units)</span>
+                  </div>
+                </td>
+                <td>{{ row.warehouse }}</td>
+                <td class="align-right price">{{ row.price }}</td>
+                <td class="align-right">
+                  <button class="menu-btn" type="button" aria-label="More actions">
+                    <span class="material-symbols-outlined">more_vert</span>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <div class="insights-column">
+      <article class="value-card">
+        <div class="value-header">
+          <div>
+            <span class="kpi-label">Total Inventory Value</span>
+            <p class="kpi-value">$2.48M</p>
+          </div>
+          <div class="value-icon">
+            <span class="material-symbols-outlined">payments</span>
+          </div>
+        </div>
+        <div class="value-meta">
+          <span class="delta">+12.5%</span>
+          <span>vs last month</span>
+        </div>
+      </article>
+
+      <article class="distribution-card">
+        <h3>Stock Distribution</h3>
+        <div class="distribution-list">
+          @for (item of stockDistribution; track item.label) {
+            <div class="distribution-item">
+              <div class="distribution-meta">
+                <span>{{ item.label }}</span>
+                <span class="muted">{{ item.percent }}%</span>
+              </div>
+              <div class="distribution-track">
+                <div class="distribution-fill" [style.width.%]="item.percent" [style.background]="item.color"></div>
+              </div>
+            </div>
+          }
+        </div>
+      </article>
+
+      <article class="analytics-card">
+        <h3>Warehouse Analytics</h3>
+        <p>Capacity utilization across all regional hubs is currently at optimal levels.</p>
+        <div class="manager-row">
+          <div class="manager-avatars" aria-hidden="true">
+            <span class="avatar">AM</span>
+            <span class="avatar">RL</span>
+            <span class="avatar more">+8</span>
+          </div>
+          <span>Managers Online</span>
+        </div>
+        <span class="material-symbols-outlined analytics-graphic">domain</span>
+      </article>
+    </div>
+  </section>
+
+  <footer class="meta-footer">
+    <div class="meta-list">
+      <span>Active SKUs: 1,240</span>
+      <span>Warehouses: 4</span>
+      <span>Last Update: 2 mins ago</span>
+    </div>
+    <div class="status">
+      <span class="status-dot"></span>
+      <span>System Live</span>
+    </div>
+  </footer>
+</div>

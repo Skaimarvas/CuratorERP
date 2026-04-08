@@ -17,6 +17,52 @@
   background: $surface;
 }
 
+.mobile-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 35;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: $surface;
+}
+
+.mobile-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mobile-profile h1 {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-xl;
+  font-weight: $weight-bold;
+  letter-spacing: $letter-spacing-normal;
+  color: $on-surface;
+}
+
+.mobile-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: $surface-container-high;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $primary;
+}
+
+.mobile-avatar .material-symbols-outlined {
+  font-size: 2rem;
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.mobile-notify {
+  color: $primary;
+}
+
 .topbar {
   position: fixed;
   top: 0;
@@ -172,12 +218,72 @@
   padding-top: 5rem;
 }
 
+.mobile-bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+  background: $surface-container-lowest;
+  border-top: 1px solid rgba(167, 180, 186, 0.2);
+  box-shadow: 0 -4px 20px -4px rgba(40, 52, 57, 0.08);
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.125rem;
+  min-width: 4.25rem;
+  padding: 0.375rem 0.5rem;
+  border-radius: $radius-lg;
+  color: $tertiary;
+  text-decoration: none;
+  font-family: $font-body;
+  font-size: 0.6875rem;
+  font-weight: $weight-medium;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-wide;
+}
+
+.mobile-nav-item .material-symbols-outlined {
+  font-size: 1.25rem;
+  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+
+.mobile-nav-item.active {
+  background: $surface-container-high;
+  color: $on-surface;
+}
+
+.mobile-nav-item.active .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+
 @media (max-width: $breakpoint-md) {
   .workspace {
     margin-left: 0;
   }
 
   .topbar {
-    left: 0;
+    display: none;
+  }
+
+  .workspace-content {
+    padding-top: 0;
+    padding-bottom: 5.5rem;
+  }
+
+  .mobile-topbar {
+    display: flex;
+  }
+
+  .mobile-bottom-nav {
+    display: flex;
   }
 }

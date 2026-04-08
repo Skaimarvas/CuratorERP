@@ -145,3 +145,9 @@
   font-size: $text-xs;
   color: $on-surface-variant;
 }
+
+@media (max-width: $breakpoint-md) {
+  .sidebar {
+    display: none;
+  }
+}
