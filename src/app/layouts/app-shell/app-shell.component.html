@@ -1,21 +1,41 @@
 <div class="app-shell">
-  <app-sidebar
-    [applicationName]="applicationName"
-    [navigation]="navigation"
-    [currentYear]="currentYear"
-  />
+  <app-sidebar [navigation]="navigation" />
 
-  <section class="workspace">
-    <header class="workspace-header">
-      <div>
-        <p class="eyebrow">Workspace</p>
-        <h2>ERP Control Center</h2>
+  <div class="workspace">
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="search-box">
+          <span class="material-symbols-outlined search-icon">search</span>
+          <input class="search-input" type="text" placeholder="Search insights..." />
+        </div>
+        <nav class="top-tabs" aria-label="Section navigation">
+          <a
+            class="top-tab"
+            routerLink="/dashboard"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >Overview</a>
+          <a class="top-tab" href="#">Reports</a>
+          <a class="top-tab" href="#">Settings</a>
+        </nav>
       </div>
-      <button type="button">Create Module</button>
+      <div class="topbar-right">
+        <button class="icon-btn notification-btn" type="button" aria-label="Notifications">
+          <span class="material-symbols-outlined">notifications</span>
+          <span class="notification-dot"></span>
+        </button>
+        <button class="icon-btn" type="button" aria-label="Help">
+          <span class="material-symbols-outlined">help_outline</span>
+        </button>
+        <div class="topbar-divider"></div>
+        <div class="profile-avatar" role="img" aria-label="Administrator Profile">
+          <span class="material-symbols-outlined">account_circle</span>
+        </div>
+      </div>
     </header>
 
     <main class="workspace-content">
       <router-outlet />
     </main>
-  </section>
+  </div>
 </div>

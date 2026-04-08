@@ -12,11 +12,16 @@ export class LoginPage {
   private readonly formBuilder = new FormBuilder();
 
   protected readonly isSubmitting = signal(false);
+  protected readonly showPassword = signal(false);
   protected readonly loginForm = this.formBuilder.nonNullable.group({
-    email: ['', [Validators.required, Validators.email]],
+    identity: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(8)]],
-    rememberMe: [true],
+    remember: [true],
   });
+
+  protected togglePasswordVisibility(): void {
+    this.showPassword.update((value) => !value);
+  }
 
   protected submit(): void {
     if (this.loginForm.invalid || this.isSubmitting()) {

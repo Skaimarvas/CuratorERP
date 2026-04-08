@@ -1,40 +1,182 @@
-<section class="dashboard-grid">
-  <article class="hero-card">
-    <p class="eyebrow">Starter Module</p>
-    <h3>Operations dashboard scaffold</h3>
-    <p>
-      The workspace is ready for feature modules, API integration, authentication, and role-based
-      access control.
-    </p>
-  </article>
+<div class="dashboard-page">
+  <!-- Page Header -->
+  <div class="page-header">
+    <h2 class="page-title">Executive Dashboard</h2>
+    <p class="page-subtitle">Curation of enterprise-wide performance metrics.</p>
+  </div>
 
-  <section class="metrics" aria-label="Key metrics">
-    @for (metric of metrics; track metric.label) {
-      <article class="metric-card">
-        <span>{{ metric.label }}</span>
-        <strong>{{ metric.value }}</strong>
-        <small>{{ metric.trend }}</small>
-      </article>
-    }
-  </section>
+  <!-- KPI Row -->
+  <div class="kpi-row">
+    <div class="kpi-card kpi-card--wide">
+      <div class="kpi-accent kpi-accent--primary"></div>
+      <div>
+        <span class="kpi-label">Monthly Revenue</span>
+        <div class="kpi-value-row">
+          <h3 class="kpi-value">$1,420,500</h3>
+          <span class="kpi-trend kpi-trend--up">
+            <span class="material-symbols-outlined">trending_up</span>
+            12.4%
+          </span>
+        </div>
+      </div>
+      <div class="mini-chart">
+        <div class="mini-bar" style="height: 40%"></div>
+        <div class="mini-bar" style="height: 60%"></div>
+        <div class="mini-bar" style="height: 45%"></div>
+        <div class="mini-bar" style="height: 70%"></div>
+        <div class="mini-bar" style="height: 90%"></div>
+        <div class="mini-bar mini-bar--active"></div>
+      </div>
+    </div>
 
-  <article class="panel-card">
-    <p class="eyebrow">Planned Modules</p>
-    <h3>Suggested ERP feature groups</h3>
-    <ul>
-      @for (module of modules; track module) {
-        <li>{{ module }}</li>
-      }
-    </ul>
-  </article>
+    <div class="kpi-card">
+      <div class="kpi-accent kpi-accent--tertiary"></div>
+      <span class="kpi-label">Pending Orders</span>
+      <h3 class="kpi-value">148</h3>
+      <p class="kpi-note">24 requiring immediate action</p>
+      <div class="kpi-meta">
+        <span class="material-symbols-outlined kpi-meta-icon">schedule</span>
+        <span>Average 2.4 days delay</span>
+      </div>
+    </div>
 
-  <article class="panel-card">
-    <p class="eyebrow">Recent Activity</p>
-    <h3>Sample business events</h3>
-    <ul>
-      @for (item of activity; track item) {
-        <li>{{ item }}</li>
-      }
-    </ul>
-  </article>
-</section>
+    <div class="kpi-card">
+      <div class="kpi-accent kpi-accent--error"></div>
+      <span class="kpi-label">Inventory Alerts</span>
+      <h3 class="kpi-value kpi-value--error">12</h3>
+      <p class="kpi-note">Critical stock-outs detected</p>
+      <button class="kpi-action" type="button">
+        Review Alerts
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Bento Data Grid -->
+  <div class="data-grid">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <h4 class="card-title">Sales Performance Trends</h4>
+          <p class="card-subtitle">Comparative analysis: current vs previous quarter</p>
+        </div>
+        <div class="chart-period-tabs">
+          <button class="period-tab period-tab--active" type="button">Daily</button>
+          <button class="period-tab" type="button">Weekly</button>
+          <button class="period-tab" type="button">Monthly</button>
+        </div>
+      </div>
+      <div class="chart-area">
+        <svg class="chart-svg" viewBox="0 0 800 200" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="grad-primary" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#455f88" />
+              <stop offset="100%" stop-color="#455f88" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          <line x1="0" y1="0" x2="800" y2="0" stroke="#a7b4ba" stroke-opacity="0.15" stroke-dasharray="4" />
+          <line x1="0" y1="50" x2="800" y2="50" stroke="#a7b4ba" stroke-opacity="0.15" stroke-dasharray="4" />
+          <line x1="0" y1="100" x2="800" y2="100" stroke="#a7b4ba" stroke-opacity="0.15" stroke-dasharray="4" />
+          <line x1="0" y1="150" x2="800" y2="150" stroke="#a7b4ba" stroke-opacity="0.15" stroke-dasharray="4" />
+          <path
+            d="M0,150 Q100,140 200,80 T400,100 T600,40 T800,60 V200 H0 Z"
+            fill="url(#grad-primary)"
+            opacity="0.1"
+          />
+          <path
+            d="M0,150 Q100,140 200,80 T400,100 T600,40 T800,60"
+            fill="none"
+            stroke="#455f88"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+          <circle cx="200" cy="80" r="4" fill="#455f88" />
+          <circle cx="600" cy="40" r="4" fill="#455f88" />
+        </svg>
+        <div class="chart-x-labels">
+          <span>Week 01</span>
+          <span>Week 02</span>
+          <span>Week 03</span>
+          <span>Week 04</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mix-card">
+      <h4 class="card-title">Inventory Mix</h4>
+      <div class="mix-list">
+        @for (item of inventoryMix; track item.label) {
+          <div class="mix-item">
+            <div class="mix-item-header">
+              <span class="mix-label">{{ item.label }}</span>
+              <span class="mix-percent">{{ item.percent }}%</span>
+            </div>
+            <div class="mix-track">
+              <div
+                class="mix-fill"
+                [style.width.%]="item.percent"
+                [style.background]="item.barColor"
+              ></div>
+            </div>
+          </div>
+        }
+      </div>
+      <button class="mix-report-btn" type="button">Download Full Inventory Report</button>
+    </div>
+  </div>
+
+  <!-- Recent Activity Table -->
+  <div class="activity-card">
+    <div class="activity-header">
+      <h4 class="card-title">Recent Activity</h4>
+      <button class="activity-view-all" type="button">
+        View All Activity
+        <span class="material-symbols-outlined">open_in_new</span>
+      </button>
+    </div>
+    <div class="table-wrapper">
+      <table class="activity-table">
+        <thead>
+          <tr>
+            <th>Transaction ID</th>
+            <th>Entity/Client</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th class="text-right">Amount</th>
+            <th class="text-right">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of recentActivity; track item.id) {
+            <tr>
+              <td class="transaction-id">{{ item.id }}</td>
+              <td>
+                <div class="entity-cell">
+                  <div
+                    class="entity-icon"
+                    [style.background]="item.entityBgColor"
+                    [style.color]="item.entityIconColor"
+                  >
+                    <span class="material-symbols-outlined">{{ item.entityIcon }}</span>
+                  </div>
+                  <span>{{ item.entity }}</span>
+                </div>
+              </td>
+              <td class="date-cell">{{ item.date }}</td>
+              <td><span class="type-badge">{{ item.type }}</span></td>
+              <td class="amount-cell text-right">{{ item.amount }}</td>
+              <td class="text-right">
+                <span class="status-dot" [style.background]="item.statusColor"></span>
+                <span class="status-label">{{ item.status }}</span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<button class="fab" type="button" aria-label="Add chart">
+  <span class="material-symbols-outlined fab-icon">add_chart</span>
+</button>

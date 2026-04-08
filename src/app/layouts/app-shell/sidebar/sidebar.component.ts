@@ -2,8 +2,10 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 export type SidebarNavItem = {
+  icon: string;
   label: string;
   path: string;
+  exact?: boolean;
 };
 
 @Component({
@@ -14,7 +16,5 @@ export type SidebarNavItem = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
-  readonly applicationName = input.required<string>();
   readonly navigation = input.required<readonly SidebarNavItem[]>();
-  readonly currentYear = input.required<number>();
 }

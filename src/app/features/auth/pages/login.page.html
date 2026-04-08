@@ -1,35 +1,126 @@
-<section class="login-page">
-  <div class="login-card">
-    <p class="eyebrow">Curator ERP</p>
-    <h1>Sign in to your workspace</h1>
-    <p class="subtitle">Use your company account to continue.</p>
-
-    <form [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
-      <label for="email">Email</label>
-      <input id="email" type="email" formControlName="email" autocomplete="email" />
-      @if (loginForm.controls.email.touched && loginForm.controls.email.invalid) {
-        <small class="error">Enter a valid email address.</small>
-      }
-
-      <label for="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        formControlName="password"
-        autocomplete="current-password"
-      />
-      @if (loginForm.controls.password.touched && loginForm.controls.password.invalid) {
-        <small class="error">Password must be at least 8 characters.</small>
-      }
-
-      <label class="remember">
-        <input type="checkbox" formControlName="rememberMe" />
-        <span>Remember this device</span>
-      </label>
-
-      <button type="submit" [disabled]="isSubmitting()">
-        {{ isSubmitting() ? 'Signing in...' : 'Sign in' }}
-      </button>
-    </form>
+<main class="login-root" aria-labelledby="login-heading">
+  <div class="background-motif" aria-hidden="true">
+    <div class="architectural-image"></div>
+    <div class="background-fade"></div>
   </div>
-</section>
+
+  <section class="login-panel" role="region" aria-label="Authentication panel">
+    <div class="brand-side">
+      <div>
+        <div class="brand-title-row">
+          <span class="material-symbols-outlined brand-icon">architecture</span>
+          <h1 class="brand-title">Architectural Curator</h1>
+        </div>
+
+        <div class="brand-content">
+          <h2 class="brand-heading">
+            Precision in every <span class="brand-heading-emphasis">detail.</span>
+          </h2>
+          <p class="brand-copy">
+            Access your enterprise resource environment. Managed authority for the modern
+            architectural landscape.
+          </p>
+        </div>
+      </div>
+
+      <footer class="brand-footer">Aeon Enterprise Systems © 2024</footer>
+    </div>
+
+    <div class="form-side">
+      <div class="mobile-brand-row">
+        <span class="material-symbols-outlined mobile-brand-icon">architecture</span>
+        <span class="mobile-brand-text">Architectural Curator</span>
+      </div>
+
+      <header class="form-header">
+        <h3 id="login-heading" class="form-title">Secure Access</h3>
+        <p class="form-subtitle">Enter your credentials to manage your curation dashboard.</p>
+      </header>
+
+      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
+        <div class="field-block">
+          <label class="field-label" for="identity">Username / Email</label>
+          <div class="input-shell">
+            <span class="material-symbols-outlined field-leading-icon">alternate_email</span>
+            <input
+              id="identity"
+              type="text"
+              formControlName="identity"
+              autocomplete="username"
+              placeholder="name@aeon-enterprise.com"
+            />
+          </div>
+          @if (loginForm.controls.identity.touched && loginForm.controls.identity.invalid) {
+            <small class="field-error">Username or email is required.</small>
+          }
+        </div>
+
+        <div class="field-block">
+          <div class="field-row">
+            <label class="field-label" for="password">Password</label>
+            <a class="forgot-password" href="" (click)="$event.preventDefault()">
+              Forgot Password?
+            </a>
+          </div>
+
+          <div class="input-shell">
+            <span class="material-symbols-outlined field-leading-icon">lock</span>
+            <input
+              id="password"
+              [type]="showPassword() ? 'text' : 'password'"
+              formControlName="password"
+              autocomplete="current-password"
+              placeholder="••••••••"
+            />
+            <button
+              class="password-toggle"
+              type="button"
+              [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+              (click)="togglePasswordVisibility()"
+            >
+              <span class="material-symbols-outlined">
+                {{ showPassword() ? 'visibility_off' : 'visibility' }}
+              </span>
+            </button>
+          </div>
+
+          @if (loginForm.controls.password.touched && loginForm.controls.password.errors?.['required']) {
+            <small class="field-error">Password is required.</small>
+          }
+          @if (loginForm.controls.password.touched && loginForm.controls.password.errors?.['minlength']) {
+            <small class="field-error">Password must be at least 8 characters.</small>
+          }
+        </div>
+
+        <label class="remember-row" for="remember">
+          <input id="remember" type="checkbox" formControlName="remember" />
+          <span>Remember this device</span>
+        </label>
+
+        <div class="submit-row">
+          <button class="submit-button" type="submit" [disabled]="isSubmitting()">
+            <span class="material-symbols-outlined submit-icon">login</span>
+            <span>{{ isSubmitting() ? 'Authenticating...' : 'Authenticate Session' }}</span>
+          </button>
+        </div>
+      </form>
+
+      <footer class="form-footer">
+        <div class="security-pill">
+          <span class="material-symbols-outlined">shield</span>
+          <span>Secured by Aeon Curator Protocols</span>
+        </div>
+        <p>
+          Unauthorized access is strictly prohibited. Your IP address and session data are being
+          monitored for security purposes.
+        </p>
+      </footer>
+    </div>
+  </section>
+
+  <nav class="utility-links" aria-label="Utility links">
+    <a href="" (click)="$event.preventDefault()">Privacy Policy</a>
+    <a href="" (click)="$event.preventDefault()">Security Standards</a>
+    <a href="" (click)="$event.preventDefault()">Technical Support</a>
+  </nav>
+</main>

@@ -1,81 +1,520 @@
 @use '../../../styles/variables' as *;
 
-.dashboard-grid {
-  display: grid;
-  gap: 1.25rem;
+.dashboard-page {
+  padding: 2.5rem;
+  max-width: 80rem;
+  margin: 0 auto;
 }
 
-.hero-card,
-.panel-card,
-.metric-card {
-  border-radius: $radius-sm;
-  background: $surface-container-lowest;
-  box-shadow: $shadow-ambient;
+// Page Header
+.page-header {
+  margin-bottom: 2.5rem;
 }
 
-.hero-card,
-.panel-card {
-  padding: 1.5rem;
-}
-
-.hero-card h3,
-.panel-card h3 {
+.page-title {
   margin: 0;
-  font-size: $text-2xl;
-  letter-spacing: $letter-spacing-normal;
+  font-family: $font-display;
+  font-size: $text-3xl;
+  font-weight: 800;
   color: $on-surface;
+  letter-spacing: $letter-spacing-tight;
 }
 
-.hero-card p:last-child,
-.panel-card ul {
-  margin: $spacing-md 0 0;
-  color: $on-surface;
-}
-
-.metrics {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.metric-card {
-  padding: 1.25rem;
-}
-
-.metric-card span,
-.metric-card small,
-.panel-card li {
+.page-subtitle {
+  margin: 0.25rem 0 0;
+  font-family: $font-body;
+  font-size: $text-sm;
   color: $on-surface-variant;
 }
 
-.metric-card strong {
-  display: block;
-  margin: 0.4rem 0;
-  font-size: $text-4xl;
-  letter-spacing: $letter-spacing-tight;
-  color: $on-surface;
-  font-weight: $weight-semibold;
+// KPI Row
+.kpi-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
-.eyebrow {
-  margin: 0 0 0.5rem;
+.kpi-card {
+  background: white;
+  border-radius: $radius-xl;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card--wide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.kpi-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+}
+
+.kpi-accent--primary { background: $primary; }
+.kpi-accent--tertiary { background: $tertiary; }
+.kpi-accent--error { background: $error; }
+
+.kpi-label {
+  display: block;
+  font-family: $font-body;
+  font-size: $text-xs;
+  font-weight: $weight-bold;
   text-transform: uppercase;
-  letter-spacing: $letter-spacing-wide;
+  letter-spacing: $letter-spacing-wider;
+  color: $on-surface-variant;
+  margin-bottom: 0.25rem;
+}
+
+.kpi-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.kpi-value {
+  margin: 0.25rem 0 0;
+  font-family: $font-display;
+  font-size: $text-4xl;
+  font-weight: 800;
+  color: $on-surface;
+  letter-spacing: $letter-spacing-tight;
+}
+
+.kpi-value--error {
+  color: $error;
+}
+
+.kpi-trend {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  font-size: $text-sm;
+  font-weight: $weight-bold;
+}
+
+.kpi-trend--up {
+  color: #16a34a;
+}
+
+.kpi-trend .material-symbols-outlined {
+  font-size: 1rem;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.kpi-note {
+  margin: 0.5rem 0 0;
+  font-size: $text-sm;
+  color: $on-surface-variant;
+}
+
+.kpi-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 1rem;
   font-size: $text-xs;
   color: $on-surface-variant;
+}
+
+.kpi-meta-icon {
+  font-size: 1.125rem;
+  color: $tertiary;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.kpi-action {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 1rem;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: $font-body;
+  font-size: $text-xs;
+  font-weight: $weight-bold;
+  color: $error;
+  cursor: pointer;
+  transition: gap $transition-fast;
+}
+
+.kpi-action:hover {
+  gap: 0.5rem;
+}
+
+.kpi-action .material-symbols-outlined {
+  font-size: 1rem;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.mini-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 3rem;
+  margin-top: 1.5rem;
+}
+
+.mini-bar {
+  flex: 1;
+  background: rgba(69, 95, 136, 0.1);
+  border-radius: 2px;
+}
+
+.mini-bar--active {
+  height: 100% !important;
+  background: $primary;
+}
+
+// Data Grid
+.data-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+// Chart Card
+.chart-card {
+  background: white;
+  border-radius: $radius-xl;
+  padding: 2rem;
+}
+
+.chart-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card-title {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-xl;
+  font-weight: $weight-bold;
+  color: $on-surface;
+}
+
+.card-subtitle {
+  margin: 0.25rem 0 0;
+  font-size: $text-sm;
+  color: $on-surface-variant;
+}
+
+.chart-period-tabs {
+  display: flex;
+  background: $surface-container-low;
+  border-radius: $radius-sm;
+  padding: 0.25rem;
+  flex-shrink: 0;
+}
+
+.period-tab {
+  padding: 0.25rem 1rem;
+  background: none;
+  border: none;
+  border-radius: 2px;
+  font-family: $font-body;
+  font-size: $text-xs;
+  font-weight: $weight-bold;
+  color: $on-surface-variant;
+  cursor: pointer;
+  transition: background $transition-fast, color $transition-fast;
+}
+
+.period-tab--active {
+  background: white;
+  color: $on-surface;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.chart-area {
+  position: relative;
+}
+
+.chart-svg {
+  width: 100%;
+  height: 16rem;
+  overflow: visible;
+}
+
+.chart-x-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  font-size: 0.625rem;
+  font-weight: $weight-bold;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-wider;
+  color: $on-surface-variant;
+}
+
+// Inventory Mix Card
+.mix-card {
+  background: $surface-container-low;
+  border-radius: $radius-xl;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.mix-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.mix-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.mix-label {
+  font-size: $text-xs;
+  font-weight: $weight-bold;
+  color: $on-surface;
+}
+
+.mix-percent {
+  font-size: $text-xs;
+  font-weight: $weight-bold;
+  color: $on-surface-variant;
+}
+
+.mix-track {
+  width: 100%;
+  height: 0.5rem;
+  background: #d7e5eb;
+  border-radius: $radius-full;
+  overflow: hidden;
+}
+
+.mix-fill {
+  height: 100%;
+  border-radius: $radius-full;
+  transition: width $transition-slow;
+}
+
+.mix-report-btn {
+  margin-top: 2rem;
+  padding: 0.75rem;
+  width: 100%;
+  background: none;
+  border: 1px solid rgba(167, 180, 186, 0.3);
+  border-radius: $radius-sm;
+  font-family: $font-body;
+  font-size: $text-xs;
+  font-weight: $weight-bold;
+  color: $on-surface;
+  cursor: pointer;
+  transition: background $transition-fast;
+}
+
+.mix-report-btn:hover {
+  background: $surface-container-high;
+}
+
+// Recent Activity
+.activity-card {
+  background: white;
+  border-radius: $radius-xl;
+  padding: 2rem;
+}
+
+.activity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.activity-view-all {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  font-family: $font-body;
+  font-size: $text-xs;
+  font-weight: $weight-bold;
+  color: $primary;
+  cursor: pointer;
+}
+
+.activity-view-all .material-symbols-outlined {
+  font-size: 1rem;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.activity-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.activity-table thead tr {
+  border-bottom: 1px solid $surface-container-low;
+}
+
+.activity-table th {
+  padding: 0 1rem 1rem;
+  font-family: $font-body;
+  font-size: $text-xs;
+  font-weight: $weight-bold;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-wider;
+  color: $on-surface-variant;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.activity-table tbody tr {
+  border-bottom: 1px solid $surface-container-low;
+  transition: background $transition-fast;
+}
+
+.activity-table tbody tr:hover {
+  background: $surface-container-low;
+}
+
+.activity-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.activity-table td {
+  padding: 1.25rem 1rem;
+  font-size: $text-sm;
+  color: $on-surface;
+  vertical-align: middle;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.transaction-id {
   font-weight: $weight-semibold;
 }
 
-.panel-card ul {
-  padding-left: 1.1rem;
+.entity-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.panel-card li + li {
-  margin-top: 0.75rem;
+.entity-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: $radius-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
+.entity-icon .material-symbols-outlined {
+  font-size: 1rem;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.date-cell {
+  color: $on-surface-variant;
+  white-space: nowrap;
+}
+
+.type-badge {
+  display: inline-block;
+  background: $surface-container-high;
+  padding: 0.25rem 0.5rem;
+  border-radius: $radius-xs;
+  font-size: 0.625rem;
+  font-weight: $weight-bold;
+  letter-spacing: $letter-spacing-wide;
+}
+
+.amount-cell {
+  font-family: monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.status-label {
+  font-size: 0.625rem;
+  font-weight: $weight-bold;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-wide;
+  color: $on-surface-variant;
+}
+
+// FAB
+.fab {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: $primary;
+  color: $on-primary;
+  border: none;
+  box-shadow: 0 8px 24px rgba(69, 95, 136, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 50;
+  transition: transform $transition-fast;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+}
+
+.fab:active {
+  transform: scale(0.95);
+}
+
+.fab-icon {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+// Responsive
 @media (max-width: $breakpoint-md) {
-  .metrics {
+  .kpi-row {
     grid-template-columns: 1fr;
+  }
+
+  .data-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .dashboard-page {
+    padding: 1.25rem;
   }
 }

@@ -15,6 +15,11 @@ export const routes: Routes = [
 		children: [
 			{
 				path: '',
+				pathMatch: 'full',
+				redirectTo: 'dashboard',
+			},
+			{
+				path: 'dashboard',
 				component: DashboardPage,
 				title: 'Curator ERP | Dashboard',
 			},
