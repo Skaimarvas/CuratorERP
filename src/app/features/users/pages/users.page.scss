@@ -1,0 +1,563 @@
+@use '../../../../styles/variables' as *;
+
+.users-page {
+  max-width: 86rem;
+  margin: 0 auto;
+  padding: 2.5rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-4xl;
+  font-weight: 800;
+  letter-spacing: $letter-spacing-tight;
+  color: $on-surface;
+}
+
+.page-header p {
+  margin: 0.5rem 0 0;
+  font-size: $text-sm;
+  color: $on-surface-variant;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn {
+  border: 1px solid transparent;
+  border-radius: $radius-xl;
+  padding: 0.625rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: $font-body;
+  font-size: $text-sm;
+  font-weight: $weight-semibold;
+  cursor: pointer;
+  transition: background $transition-fast, transform $transition-fast;
+}
+
+.btn .material-symbols-outlined {
+  font-size: 1rem;
+  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+
+.btn-secondary {
+  background: $surface-container-high;
+  color: $primary;
+}
+
+.btn-primary {
+  background: $primary;
+  color: $on-primary;
+  box-shadow: 0 10px 24px -12px rgba(69, 95, 136, 0.55);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 1.25rem;
+}
+
+.metrics-main,
+.health-card,
+.table-card,
+.audit-card,
+.automation-card {
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 24px -18px rgba(40, 52, 57, 0.18);
+}
+
+.metrics-main {
+  padding: 1.75rem 2rem;
+  background: $surface-container-lowest;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.metrics-group {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.metric-label {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: $weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: $on-surface-variant;
+}
+
+.metric-value {
+  margin: 0.35rem 0 0;
+  font-family: $font-display;
+  font-size: 1.95rem;
+  font-weight: 800;
+  color: $on-surface;
+}
+
+.metric-value.active {
+  color: $primary;
+}
+
+.metric-value.tertiary {
+  color: $tertiary;
+}
+
+.metrics-divider {
+  width: 1px;
+  align-self: stretch;
+  background: rgba(167, 180, 186, 0.28);
+}
+
+.avatar-stack {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-left: -0.45rem;
+  border: 2px solid $surface-container-lowest;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6875rem;
+  font-weight: $weight-bold;
+  color: $primary;
+  background: $surface-container-high;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.avatar.more {
+  color: $on-surface-variant;
+  background: $surface-container-low;
+}
+
+.health-card {
+  padding: 1.75rem;
+  background: linear-gradient(155deg, $primary, $primary-dim);
+  color: $on-primary;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.health-card .material-symbols-outlined {
+  font-size: 2rem;
+  opacity: 0.65;
+  font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+
+.health-card p {
+  margin: 0;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.88;
+}
+
+.health-card h2 {
+  margin: 0.3rem 0 0;
+  font-family: $font-display;
+  font-size: $text-xl;
+}
+
+.table-card {
+  background: $surface-container-lowest;
+  overflow: hidden;
+}
+
+.table-toolbar {
+  padding: 1.25rem 1.5rem;
+  background: $surface-container-low;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.search-box {
+  width: min(100%, 24rem);
+  border-radius: $radius-xl;
+  background: $surface;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.75rem;
+}
+
+.search-box .material-symbols-outlined {
+  color: $on-surface-variant;
+  font-size: 1.1rem;
+}
+
+.search-box input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: $on-surface;
+  outline: none;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-chip {
+  background: $surface-container-lowest;
+  color: $on-surface-variant;
+  border: 1px solid rgba(167, 180, 186, 0.2);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 46rem;
+}
+
+th {
+  text-align: left;
+  padding: 1rem 1.5rem;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $on-surface-variant;
+  background: rgba(239, 244, 247, 0.55);
+}
+
+td {
+  padding: 1.1rem 1.5rem;
+  border-top: 1px solid rgba(167, 180, 186, 0.16);
+  font-size: $text-sm;
+  color: $on-surface;
+  vertical-align: middle;
+}
+
+tbody tr:hover {
+  background: rgba(239, 244, 247, 0.65);
+}
+
+.align-right {
+  text-align: right;
+}
+
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.initials {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: $radius-sm;
+  background: $primary-container;
+  color: $primary;
+  font-family: $font-display;
+  font-weight: $weight-bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.initials.alt-tone {
+  background: $surface-container-high;
+  color: $tertiary;
+}
+
+.user-name {
+  margin: 0;
+  font-family: $font-display;
+  font-weight: $weight-bold;
+}
+
+.user-email,
+.muted {
+  margin: 0.15rem 0 0;
+  color: $on-surface-variant;
+  font-size: $text-xs;
+}
+
+.role-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: $radius-full;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.6875rem;
+  font-weight: $weight-bold;
+}
+
+.role-chip .material-symbols-outlined {
+  font-size: 0.9rem;
+}
+
+.role-chip.admin {
+  background: $primary-container;
+  color: $on-primary-container;
+}
+
+.role-chip.manager {
+  background: rgba(84, 96, 115, 0.18);
+  color: #475265;
+}
+
+.role-chip.viewer {
+  background: $surface-container-high;
+  color: $on-surface-variant;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: $primary;
+  font-weight: $weight-semibold;
+  font-size: $text-xs;
+}
+
+.status-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: $primary;
+}
+
+.status-pill.inactive {
+  color: $on-surface-variant;
+}
+
+.status-pill.inactive .status-dot {
+  background: $on-surface-tertiary;
+}
+
+.icon-btn {
+  border: none;
+  background: transparent;
+  color: $on-surface-variant;
+  cursor: pointer;
+  padding: 0.15rem;
+}
+
+.icon-btn:hover {
+  color: $primary;
+}
+
+.table-footer {
+  border-top: 1px solid rgba(167, 180, 186, 0.16);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.table-footer p {
+  margin: 0;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $on-surface-variant;
+  font-weight: $weight-bold;
+}
+
+.pager {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.pager button {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: $radius-md;
+  background: $surface-container-high;
+  color: $on-surface-variant;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: $weight-bold;
+}
+
+.pager button.active {
+  background: $primary;
+  color: $on-primary;
+}
+
+.bottom-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 1.25rem;
+}
+
+.audit-card {
+  padding: 1.5rem;
+  background: $surface-container-low;
+}
+
+.audit-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.audit-head h3,
+.automation-card h3 {
+  margin: 0;
+  font-family: $font-display;
+  font-size: $text-lg;
+}
+
+.audit-head .material-symbols-outlined {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: $radius-full;
+  background: $surface-container-lowest;
+  color: $primary;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.audit-card p,
+.automation-card p {
+  margin: 0;
+  color: $on-surface-variant;
+  font-size: $text-sm;
+  line-height: 1.55;
+}
+
+.link-btn {
+  margin-top: 0.9rem;
+  border: none;
+  padding: 0;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: $primary;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: $weight-bold;
+  cursor: pointer;
+}
+
+.link-btn .material-symbols-outlined {
+  font-size: 1rem;
+}
+
+.automation-card {
+  background: $surface-container-high;
+  padding: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.automation-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: $radius-full;
+  background: $surface-container-lowest;
+  border: 4px solid rgba(69, 95, 136, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.automation-icon .material-symbols-outlined {
+  color: $primary;
+  font-size: 1.75rem;
+}
+
+@media (max-width: $breakpoint-lg) {
+  .users-page {
+    padding: 1.75rem;
+  }
+
+  .page-header,
+  .table-toolbar,
+  .table-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .metrics-grid,
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics-main {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .metrics-group {
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .metrics-divider {
+    display: none;
+  }
+
+  .header-actions {
+    width: 100%;
+  }
+
+  .header-actions .btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .users-page {
+    padding: 1rem 0.75rem 5.5rem;
+  }
+
+  .page-header h1 {
+    font-size: $text-3xl;
+  }
+}

@@ -14,6 +14,6 @@ export class AppShellComponent {
     { icon: 'dashboard', label: 'Dashboard', path: '/dashboard', exact: true },
     { icon: 'inventory_2', label: 'Inventory', path: '/inventory' },
     { icon: 'receipt_long', label: 'Sales Orders', path: '/sales' },
-    { icon: 'manage_accounts', label: 'User Management', path: '/people' },
+    { icon: 'manage_accounts', label: 'User Management', path: '/users' },
   ];
 }

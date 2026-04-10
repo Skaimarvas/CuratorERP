@@ -1,0 +1,140 @@
+<div class="sales-orders-page">
+  <section class="page-header">
+    <div class="page-title-group">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <span>Dashboard</span>
+        <span>/</span>
+        <span class="breadcrumbs-current">Sales Orders</span>
+      </nav>
+      <h1>Sales Order Management</h1>
+    </div>
+
+    <div class="page-actions">
+      <button class="action-btn action-btn-secondary" type="button">
+        <span class="material-symbols-outlined">file_download</span>
+        <span>Export CSV</span>
+      </button>
+      <button class="action-btn action-btn-primary" type="button">
+        <span class="material-symbols-outlined">add_circle</span>
+        <span>New Sales Order</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="stats-grid" aria-label="Sales order summary">
+    @for (stat of stats; track stat.label) {
+      <article class="stat-card" [class]="'stat-card stat-card-' + stat.accentTone">
+        <p class="stat-label">{{ stat.label }}</p>
+        <div class="stat-value-row">
+          <span class="stat-value" [class.stat-value-error]="stat.accentTone === 'error'">{{ stat.value }}</span>
+          <span class="stat-delta" [class]="'stat-delta stat-delta-' + stat.deltaTone">{{ stat.delta }}</span>
+        </div>
+      </article>
+    }
+  </section>
+
+  <section class="workspace-panel">
+    <div class="workspace-toolbar">
+      <div class="workspace-toolbar-left">
+        <label class="checkbox-label">
+          <input type="checkbox" />
+          <span>Select All</span>
+        </label>
+
+        <div class="toolbar-divider" aria-hidden="true"></div>
+
+        <div class="bulk-actions" aria-label="Bulk actions">
+          <button class="bulk-action-btn" type="button">
+            <span class="material-symbols-outlined">print</span>
+            <span>Batch Print</span>
+          </button>
+          <button class="bulk-action-btn" type="button">
+            <span class="material-symbols-outlined">local_shipping</span>
+            <span>Mark Shipped</span>
+          </button>
+          <button class="bulk-action-btn bulk-action-btn-danger" type="button">
+            <span class="material-symbols-outlined">cancel</span>
+            <span>Cancel Selected</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="workspace-toolbar-right">
+        <label class="filter-label" for="sales-order-filter">Filter By Status</label>
+        <select id="sales-order-filter" class="status-filter">
+          @for (option of filterOptions; track option) {
+            <option>{{ option }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-scroll">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th class="checkbox-column"></th>
+              <th>Order ID</th>
+              <th>Customer Name</th>
+              <th>Date</th>
+              <th class="align-right">Total Amount</th>
+              <th class="align-center">Status</th>
+              <th class="actions-column"></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (order of orders; track order.id) {
+              <tr>
+                <td class="checkbox-column">
+                  <input type="checkbox" [attr.aria-label]="'Select ' + order.id" />
+                </td>
+                <td>
+                  <span class="order-id">{{ order.id }}</span>
+                </td>
+                <td>
+                  <div class="customer-cell">
+                    <div class="customer-avatar" [class]="'customer-avatar customer-avatar-' + order.customerTone">
+                      {{ order.customerInitials }}
+                    </div>
+                    <span class="customer-name">{{ order.customerName }}</span>
+                  </div>
+                </td>
+                <td class="order-date">{{ order.date }}</td>
+                <td class="align-right order-total">{{ order.totalAmount }}</td>
+                <td>
+                  <div class="status-cell">
+                    <span class="status-pill" [class]="'status-pill status-pill-' + order.statusTone">{{ order.status }}</span>
+                  </div>
+                </td>
+                <td class="actions-column">
+                  <button class="row-action-btn" type="button" [attr.aria-label]="'More actions for ' + order.id">
+                    <span class="material-symbols-outlined">more_vert</span>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination-row">
+        <p>Showing <strong>1 - 5</strong> of <strong>1,284</strong> entries</p>
+
+        <div class="pagination-controls" aria-label="Pagination">
+          <button class="pagination-btn pagination-btn-icon" type="button" aria-label="Previous page">
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+          <button class="pagination-btn pagination-btn-active" type="button" aria-current="page">1</button>
+          <button class="pagination-btn" type="button">2</button>
+          <button class="pagination-btn" type="button">3</button>
+          <span class="pagination-ellipsis">...</span>
+          <button class="pagination-btn" type="button">257</button>
+          <button class="pagination-btn pagination-btn-icon" type="button" aria-label="Next page">
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

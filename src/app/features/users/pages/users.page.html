@@ -1,0 +1,174 @@
+<div class="users-page">
+  <section class="page-header">
+    <div>
+      <h1>User Management</h1>
+      <p>Control access levels and monitor organization-wide permissions.</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-secondary" type="button">Export Logs</button>
+      <button class="btn btn-primary" type="button">
+        <span class="material-symbols-outlined">person_add</span>
+        Invite User
+      </button>
+    </div>
+  </section>
+
+  <section class="metrics-grid">
+    <article class="metrics-main">
+      <div class="metrics-group">
+        <div>
+          <p class="metric-label">Total Users</p>
+          <p class="metric-value">{{ stats.totalUsers }}</p>
+        </div>
+        <div>
+          <p class="metric-label">Active Now</p>
+          <p class="metric-value active">{{ stats.activeNow }}</p>
+        </div>
+        <div>
+          <p class="metric-label">Pending Invites</p>
+          <p class="metric-value tertiary">{{ stats.pendingInvites }}</p>
+        </div>
+      </div>
+
+      <div class="metrics-divider" aria-hidden="true"></div>
+
+      <div class="avatar-stack" aria-label="Active user highlights">
+        <span class="avatar">JD</span>
+        <span class="avatar">MR</span>
+        <span class="avatar">SB</span>
+        <span class="avatar more">+28</span>
+      </div>
+    </article>
+
+    <article class="health-card">
+      <span class="material-symbols-outlined">security</span>
+      <div>
+        <p>System Health</p>
+        <h2>Policies Compliant</h2>
+      </div>
+    </article>
+  </section>
+
+  <section class="table-card">
+    <div class="table-toolbar">
+      <label class="search-box" for="users-search">
+        <span class="material-symbols-outlined">search</span>
+        <input id="users-search" type="text" placeholder="Search users by name or email..." />
+      </label>
+
+      <div class="toolbar-actions">
+        <button class="btn btn-chip" type="button">
+          <span class="material-symbols-outlined">filter_list</span>
+          Filter
+        </button>
+        <button class="btn btn-chip" type="button">
+          <span class="material-symbols-outlined">sort</span>
+          Sort
+        </button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>User Details</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Last Active</th>
+            <th class="align-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of userRows; track user.email) {
+            <tr>
+              <td>
+                <div class="user-cell">
+                  <span class="initials" [class.alt-tone]="user.role !== 'Admin'">{{ user.initials }}</span>
+                  <div>
+                    <p class="user-name">{{ user.name }}</p>
+                    <p class="user-email">{{ user.email }}</p>
+                  </div>
+                </div>
+              </td>
+
+              <td>
+                <span
+                  class="role-chip"
+                  [class.admin]="user.role === 'Admin'"
+                  [class.manager]="user.role === 'Manager'"
+                  [class.viewer]="user.role === 'Viewer'"
+                >
+                  <span class="material-symbols-outlined">
+                    {{ user.role === 'Admin' ? 'admin_panel_settings' : user.role === 'Manager' ? 'assignment_ind' : 'visibility' }}
+                  </span>
+                  {{ user.role }}
+                </span>
+              </td>
+
+              <td>
+                <span class="status-pill" [class.inactive]="user.status === 'Inactive'">
+                  <span class="status-dot"></span>
+                  {{ user.status }}
+                </span>
+              </td>
+
+              <td class="muted">{{ user.lastActive }}</td>
+
+              <td class="align-right">
+                <button class="icon-btn" type="button" aria-label="Edit user">
+                  <span class="material-symbols-outlined">edit_square</span>
+                </button>
+                <button class="icon-btn" type="button" aria-label="More user actions">
+                  <span class="material-symbols-outlined">more_vert</span>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-footer">
+      <p>Showing 1 to 4 of 1,284 entries</p>
+      <div class="pager">
+        <button type="button" aria-label="Previous page">
+          <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        <button class="active" type="button" aria-label="Page 1">1</button>
+        <button type="button" aria-label="Page 2">2</button>
+        <button type="button" aria-label="Page 3">3</button>
+        <button type="button" aria-label="Next page">
+          <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="bottom-grid">
+    <article class="audit-card">
+      <div class="audit-head">
+        <span class="material-symbols-outlined">verified_user</span>
+        <h3>Audit Trail</h3>
+      </div>
+      <p>View a complete history of permission changes and access requests across the platform.</p>
+      <button class="link-btn" type="button">
+        Access logs
+        <span class="material-symbols-outlined">arrow_right_alt</span>
+      </button>
+    </article>
+
+    <article class="automation-card">
+      <div>
+        <h3>Automate Access Reviews</h3>
+        <p>
+          Schedule recurring security audits to ensure all users have appropriate access levels
+          based on current project requirements.
+        </p>
+      </div>
+      <div class="automation-icon" aria-hidden="true">
+        <span class="material-symbols-outlined">auto_awesome</span>
+      </div>
+    </article>
+  </section>
+</div>
